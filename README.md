@@ -6,8 +6,9 @@ Learning about React and Redux
 
 <hr/>
 
-> React é um framework "single page application"
-> React usa sintaxe JSX, parece Html, poré é JSX
+> React é um framework "single page application".
+> React usa sintaxe JSX, parece Html, poré é JSX.
+> Cada componete que for usar o JSX deve importar o React.
 
 ### Para iniciar o React
 ```npm start```
