@@ -11,21 +11,21 @@ const app = () => (
     <div className="App">
         <h1>Fundamentos React</h1>
         <div className="Cards">
-            <Card titulo="#4 - Desafio Aleatório">
+            <Card titulo="#4 - Desafio Aleatório" color="#FA6900">
                 <Aleatorio min={10} max={30} />
             </Card>
 
-            <Card titulo="#3 - Fragmento">
+            <Card titulo="#3 - Fragmento" color="#E94C6F">
                 <Fragmento />
             </Card>
 
-            <Card titulo="#2 - Com Parâmetro">
+            <Card titulo="#2 - Com Parâmetro" color="#E8B71A">
                 <ComParametro
                     titulo="Segundo componente"
                     subtitulo="legal" />
             </Card>
 
-            <Card titulo="#1 - Primeiro">
+            <Card titulo="#1 - Primeiro" color="#588C73">
                 <Primeiro></Primeiro>
             </Card>
         </div>
