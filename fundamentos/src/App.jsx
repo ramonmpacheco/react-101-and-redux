@@ -7,13 +7,18 @@ import Fragmento from './components/basicos/Fragmento'
 import Aleatorio from "./components/basicos/Aleatorio";
 import Card from "./components/layout/Card";
 import Familia from './components/basicos/Familia';
+import FamiliaMembro from './components/basicos/FamiliaMembro';
 
 const app = () => (
     <div className="App">
         <h1>Fundamentos React</h1>
         <div className="Cards">
-        <Card titulo="#5 - Componente com Filhos" color="#00C8F8">
-                <Familia sobrenome="A"/>
+            <Card titulo="#5 - Componente com Filhos" color="#00C8F8">
+                <Familia sobrenome="A">
+                    <FamiliaMembro nome="Pedro"></FamiliaMembro>
+                    <FamiliaMembro nome="Ana"></FamiliaMembro>
+                    <FamiliaMembro nome="Gustavo"></FamiliaMembro>
+                </Familia>
             </Card>
 
             <Card titulo="#4 - Desafio Aleatório" color="#FA6900">
