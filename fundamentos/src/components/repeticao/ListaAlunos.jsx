@@ -3,7 +3,7 @@ import alunos from "../../data/alunos";
 
 const ListaAluno = (props) => {
     const alunosLi = alunos.map(aluno => {
-        return <li key={aluno.id}>{aluno.id}) {aluno.nome} -> {aluno.nota}</li>
+        return <li key={aluno.id}>{aluno.id}) {aluno.nome} -: {aluno.nota}</li>
     })
     return (
         <div>
