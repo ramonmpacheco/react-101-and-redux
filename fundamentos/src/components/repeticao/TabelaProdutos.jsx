@@ -7,7 +7,7 @@ const TabelaProduto = () => {
     function getLinhas() {
         return produtos.map((produto, index) => {
             return (
-                <tr key={produto.id} className={index % 2 == 0 ? 'Par' : ''}>
+                <tr key={produto.id} className={index % 2 === 0 ? 'Par' : ''}>
                     <td>{produto.id}</td>
                     <td>{produto.nome}</td>
                     <td>R$ {produto.preco.toFixed(2)}</td>
