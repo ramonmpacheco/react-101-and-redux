@@ -17,7 +17,7 @@ class Calculator extends Component {
         this.setState({ ...initialState })
     }
     setOperation(operation) {
-        if (this.state.current === 0) {
+        if (this.state.current === 0 && this.state.values[0] !== 0) {
             this.setState({ operation, current: 1, clearDisplay: true })
             return
         }
@@ -26,6 +26,10 @@ class Calculator extends Component {
         const values = [...this.state.values]
         try {
             values[0] = eval(`${values[0]} ${currentOperation} ${values[1]}`)
+            if (isNaN(values[0]) || !isFinite(values[0])) {
+                this.clearMemory()
+                return
+            }
         } catch (e) {
             values[0] = this.state.values[0]
         }
