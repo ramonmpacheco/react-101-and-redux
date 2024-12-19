@@ -1,13 +1,18 @@
-import Menu from '../components/layouts/Menu';
-import Content from '../components/layouts/Content'
 import './App.css'
 import React from "react";
+
+import { BrowserRouter } from 'react-router-dom'
+
+import Menu from '../components/layouts/Menu';
+import Content from '../components/layouts/Content'
 
 const App = (props) => {
     return (
         <div className="App">
-            <Menu />
-            <Content />
+            <BrowserRouter>
+                <Menu />
+                <Content />
+            </BrowserRouter>
         </div>
     )
 }
