@@ -6,14 +6,20 @@ import { BrowserRouter } from 'react-router-dom'
 import Menu from '../components/layout/Menu';
 import Content from '../components/layout/Content'
 
+import DataContext, {data} from '../data/DataContext';
+import { useState } from 'react';
+
 const App = (props) => {
+    const [state, setState] = useState(data)
     return (
-        <div className="App">
-            <BrowserRouter>
-                <Menu />
-                <Content />
-            </BrowserRouter>
-        </div>
+        <DataContext.Provider value={{state, setState}}>
+            <div className="App">
+                <BrowserRouter>
+                    <Menu />
+                    <Content />
+                </BrowserRouter>
+            </div>
+        </DataContext.Provider >
     )
 }
 
