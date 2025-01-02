@@ -1,7 +1,9 @@
+import Link from "next/link";
+
 export default function Inicio(){
   return (
     <div>
-      <h1>Next.js</h1>
+      <Link href={'/estiloso'}>Estiloso</Link>
     </div>
   )
 }
