@@ -13,7 +13,8 @@ export default function Inicio() {
       <Navegador destino="/exemplo" texto="Exemplo" />
       <Navegador destino="/cliente/123" texto="Navegação" cor="crimson" />
       <Navegador destino="/estado" texto="Com Estado" cor="crimson" />
-      <Navegador destino="/integracao" texto="Integração com Ap1 #01" cor="crimson" />
+      <Navegador destino="/integracao" texto="Integração com Ap1 #01" cor="#42a9a9" />
+      <Navegador destino="/estatico" texto="Conteúdo Estático" cor="#fa054a" />
     </div>
   )
 }
