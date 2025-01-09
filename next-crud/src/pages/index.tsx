@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { Geist, Geist_Mono } from "next/font/google";
 import Layout from "@/components/Layout";
+import Table from "@/components/Table";
+import Client from "@/core/Cliente";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,6 +15,12 @@ const geistMono = Geist_Mono({
 });
 
 export default function Home() {
+  const clients = [
+    new Client('1', 'Jhon', 30),
+    new Client('2', 'Ruth', 31),
+    new Client('3', 'Marcus', 29),
+    new Client('4', 'Matheus', 20),
+  ]
   return (
     <div className={`
       flex h-screen justify-center items-center
@@ -20,7 +28,7 @@ export default function Home() {
       text-white
     `}>
       <Layout title="Cadastro Simples">
-        <span>Conteúdo</span>
+        <Table clients={clients}></Table>
       </Layout>
     </div>
   );
