@@ -21,6 +21,12 @@ export default function Home() {
     new Client('3', 'Marcus', 29),
     new Client('4', 'Matheus', 20),
   ]
+  function selectedClient(client: Client) {
+    console.log(client.getName());
+  }
+  function deletedClient(client: Client) {
+    console.log(client.getName());
+  }
   return (
     <div className={`
       flex h-screen justify-center items-center
@@ -28,7 +34,10 @@ export default function Home() {
       text-white
     `}>
       <Layout title="Cadastro Simples">
-        <Table clients={clients}></Table>
+        <Table clients={clients}
+          selectedClient={selectedClient}
+          deletedClient={deletedClient}
+        ></Table>
       </Layout>
     </div>
   );
