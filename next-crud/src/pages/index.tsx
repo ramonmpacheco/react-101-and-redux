@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Layout from "@/components/Layout";
 import Table from "@/components/Table";
 import Client from "@/core/Cliente";
+import Button from "@/components/Button";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,10 +35,13 @@ export default function Home() {
       text-white
     `}>
       <Layout title="Cadastro Simples">
+        <div className="flex justify-end">
+          <Button className="mb-4" color="green">New Cliente</Button>
+        </div>
         <Table clients={clients}
           selectedClient={selectedClient}
           deletedClient={deletedClient}
-        ></Table>
+        />
       </Layout>
     </div>
   );
