@@ -4,6 +4,7 @@ import Layout from "@/components/Layout";
 import Table from "@/components/Table";
 import Client from "@/core/Cliente";
 import Button from "@/components/Button";
+import Form from "@/components/Form";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -42,6 +43,7 @@ export default function Home() {
           selectedClient={selectedClient}
           deletedClient={deletedClient}
         />
+        <Form client={clients[0]} />
       </Layout>
     </div>
   );
