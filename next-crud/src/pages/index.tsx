@@ -5,6 +5,7 @@ import Table from "@/components/Table";
 import Client from "@/core/Cliente";
 import Button from "@/components/Button";
 import Form from "@/components/Form";
+import { useState } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,6 +30,10 @@ export default function Home() {
   function deletedClient(client: Client) {
     console.log(client.getName());
   }
+  function saveOrUpdateClient(client: Client) {
+    console.log(client);
+  }
+  const [visible, setVisible] = useState<'table' | 'form'>('table')
   return (
     <div className={`
       flex h-screen justify-center items-center
@@ -36,14 +41,24 @@ export default function Home() {
       text-white
     `}>
       <Layout title="Cadastro Simples">
-        <div className="flex justify-end">
-          <Button className="mb-4" color="green">New Cliente</Button>
-        </div>
-        <Table clients={clients}
-          selectedClient={selectedClient}
-          deletedClient={deletedClient}
-        />
-        <Form client={clients[0]} />
+        {visible === 'table' ? (
+          <>
+            <div className="flex justify-end">
+              <Button
+                onClick={() => setVisible('form')}
+                className="mb-4" color="green">New Cliente</Button>
+            </div>
+            <Table clients={clients}
+              selectedClient={selectedClient}
+              deletedClient={deletedClient}
+            />
+          </>
+        ) : (
+          <Form
+            clientChange={saveOrUpdateClient}
+            cancelOnClick={() => setVisible('table')}
+            client={clients[0]} />
+        )}
       </Layout>
     </div>
   );
