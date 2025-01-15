@@ -7,16 +7,6 @@ import Button from "@/components/Button";
 import Form from "@/components/Form";
 import { useState } from "react";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export default function Home() {
   const clients = [
     new Client('1', 'Jhon', 30),
@@ -24,16 +14,23 @@ export default function Home() {
     new Client('3', 'Marcus', 29),
     new Client('4', 'Matheus', 20),
   ]
+  const [visible, setVisible] = useState<'table' | 'form'>('table')
+  const [client, setClient] = useState<Client>(new Client())
+  
   function selectedClient(client: Client) {
-    console.log(client.getName());
+    setClient(client)
+    setVisible('form')
   }
   function deletedClient(client: Client) {
     console.log(client.getName());
   }
   function saveOrUpdateClient(client: Client) {
-    console.log(client);
+    setVisible('table')
   }
-  const [visible, setVisible] = useState<'table' | 'form'>('table')
+  function newClient() {
+    setClient(new Client())
+    setVisible('form')
+  }
   return (
     <div className={`
       flex h-screen justify-center items-center
@@ -45,7 +42,7 @@ export default function Home() {
           <>
             <div className="flex justify-end">
               <Button
-                onClick={() => setVisible('form')}
+                onClick={newClient}
                 className="mb-4" color="green">New Cliente</Button>
             </div>
             <Table clients={clients}
@@ -55,9 +52,10 @@ export default function Home() {
           </>
         ) : (
           <Form
+            client={client}
             clientChange={saveOrUpdateClient}
             cancelOnClick={() => setVisible('table')}
-            client={clients[0]} />
+          />
         )}
       </Layout>
     </div>
