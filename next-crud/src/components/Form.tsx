@@ -1,6 +1,6 @@
 import { useState } from "react"
 import Input from "./Input"
-import Client from "@/core/Cliente"
+import Client from "@/core/Client"
 import Button from "./Button"
 
 interface FormProps {

@@ -1,4 +1,4 @@
-import Client from "@/core/Cliente"
+import Client from "@/core/Client"
 import { table } from "console"
 import { EditIcon, TrashIcon } from "./Icons"
 
