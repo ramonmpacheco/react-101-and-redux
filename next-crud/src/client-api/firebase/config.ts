@@ -1,5 +1,5 @@
-import firebase from "firebase/compat/app";
-import { initializeApp } from "firebase/app";
+import { getApp, getApps, initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
 
 // from .env.local
 const firebaseConfig = {
@@ -8,6 +8,11 @@ const firebaseConfig = {
     projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
 }
 
-initializeApp(firebaseConfig);
+const isAppInitialized = () => getApps().length > 0
 
-export default firebase
+const app = isAppInitialized()
+    ? getApp() : initializeApp(firebaseConfig);
+
+const firestoraDb = getFirestore(app);
+
+export default firestoraDb;

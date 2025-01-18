@@ -1,31 +1,41 @@
-import Image from "next/image";
-import { Geist, Geist_Mono } from "next/font/google";
-import Layout from "@/components/Layout";
-import Table from "@/components/Table";
+import { useEffect, useState } from "react";
+
 import Client from "@/core/Client";
-import Button from "@/components/Button";
 import Form from "@/components/Form";
-import { useState } from "react";
+import Table from "@/components/Table";
+import Layout from "@/components/Layout";
+import Button from "@/components/Button";
+
+import ClientRepository from "@/core/ClientRepository";
+import ClientRepositoryImpl from "@/db/ClientRepositoryImpl";
 
 export default function Home() {
-  const clients = [
-    new Client('1', 'Jhon', 30),
-    new Client('2', 'Ruth', 31),
-    new Client('3', 'Marcus', 29),
-    new Client('4', 'Matheus', 20),
-  ]
+  const repo: ClientRepository = new ClientRepositoryImpl()
+  const [clients, setClients] = useState<Client[]>([])
+
+  useEffect(getAll, [])
+
+  function getAll() {
+    repo.findAll().then(clients => {
+      setClients(clients)
+      setVisible('table')
+    })
+  }
+
   const [visible, setVisible] = useState<'table' | 'form'>('table')
   const [client, setClient] = useState<Client>(new Client())
-  
+
   function selectedClient(client: Client) {
     setClient(client)
     setVisible('form')
   }
-  function deletedClient(client: Client) {
-    console.log(client.getName());
+  async function deletedClient(client: Client) {
+    await repo.delete(client)
+    getAll()
   }
-  function saveOrUpdateClient(client: Client) {
-    setVisible('table')
+  async function saveOrUpdateClient(client: Client) {
+    await repo.save(client)
+    getAll()
   }
   function newClient() {
     setClient(new Client())
