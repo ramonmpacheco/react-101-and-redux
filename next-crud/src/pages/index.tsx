@@ -1,46 +1,22 @@
-import { useEffect, useState } from "react";
-
-import Client from "@/core/Client";
-import Form from "@/components/Form";
-import Table from "@/components/Table";
-import Layout from "@/components/Layout";
 import Button from "@/components/Button";
+import Form from "@/components/Form";
+import Layout from "@/components/Layout";
+import Table from "@/components/Table";
 
-import ClientRepository from "@/core/ClientRepository";
-import ClientRepositoryImpl from "@/db/ClientRepositoryImpl";
+import useClients from "@/hooks/useClients";
 
 export default function Home() {
-  const repo: ClientRepository = new ClientRepositoryImpl()
-  const [clients, setClients] = useState<Client[]>([])
+  const {
+    client,
+    clients,
+    newClient,
+    showTable,
+    deletedClient,
+    selectedClient,
+    isTableVisible,
+    saveOrUpdateClient,
+  } = useClients()
 
-  useEffect(getAll, [])
-
-  function getAll() {
-    repo.findAll().then(clients => {
-      setClients(clients)
-      setVisible('table')
-    })
-  }
-
-  const [visible, setVisible] = useState<'table' | 'form'>('table')
-  const [client, setClient] = useState<Client>(new Client())
-
-  function selectedClient(client: Client) {
-    setClient(client)
-    setVisible('form')
-  }
-  async function deletedClient(client: Client) {
-    await repo.delete(client)
-    getAll()
-  }
-  async function saveOrUpdateClient(client: Client) {
-    await repo.save(client)
-    getAll()
-  }
-  function newClient() {
-    setClient(new Client())
-    setVisible('form')
-  }
   return (
     <div className={`
       flex h-screen justify-center items-center
@@ -48,7 +24,7 @@ export default function Home() {
       text-white
     `}>
       <Layout title="Cadastro Simples">
-        {visible === 'table' ? (
+        {isTableVisible ? (
           <>
             <div className="flex justify-end">
               <Button
@@ -64,7 +40,7 @@ export default function Home() {
           <Form
             client={client}
             clientChange={saveOrUpdateClient}
-            cancelOnClick={() => setVisible('table')}
+            cancelOnClick={showTable}
           />
         )}
       </Layout>
