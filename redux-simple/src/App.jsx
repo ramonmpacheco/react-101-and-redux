@@ -1,6 +1,8 @@
 import './App.css'
-import Card from "./components/Card.jsx";
 import Interval from "./components/Interval.jsx";
+import Average from "./components/Average.jsx";
+import Sum from "./components/Sum.jsx";
+import Raffle from "./components/Raffle.jsx";
 
 function App() {
   return (
@@ -10,9 +12,9 @@ function App() {
         <Interval/>
       </div>
       <div className='line'>
-        <Card title='Card 1' green>Body</Card>
-        <Card title='Card 1' blue>Body</Card>
-        <Card title='Card 1' purple>Body</Card>
+        <Average/>
+        <Sum/>
+        <Raffle/>
       </div>
     </div>
   )
