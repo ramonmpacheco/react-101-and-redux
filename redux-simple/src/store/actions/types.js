@@ -1,0 +1,2 @@
+export const NUM_MIN_UPDATE = 'NUM_MIN_UPDATE'
+export const NUM_MAX_UPDATE = 'NUM_MAX_UPDATE'
