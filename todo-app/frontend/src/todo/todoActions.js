@@ -1,4 +1,4 @@
-import {DESCRIPTION_CHANGED, TODO_SEARCHED} from "./types";
+import {DESCRIPTION_CHANGED, TODO_ADDED, TODO_SEARCHED} from "./types";
 import axios from "axios";
 
 const URL = 'http://localhost:3003/api/todos'
@@ -13,5 +13,13 @@ export const search = () => {
   return {
     type: TODO_SEARCHED,
     payload: request
+  }
+}
+
+export const add = (description) => {
+  return dispatch => {
+    axios.post(URL, {description})
+      .then(response => dispatch({type: TODO_ADDED, payload: response.data}))
+      .then(() => dispatch(search()))
   }
 }
