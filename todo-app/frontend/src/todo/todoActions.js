@@ -23,3 +23,27 @@ export const add = (description) => {
       .then(() => dispatch(search()))
   }
 }
+
+// handleMarkAsDone(todo) {
+//   axios.put(`${URL}/${todo._id}`, {...todo, done: true})
+//     .then(() => this.refresh(this.state.description))
+// }
+
+export const markAsDone = (todo) => {
+  return dispatch => {
+    axios.put(`${URL}/${todo._id}`, {...todo, done: true})
+    .then(() => dispatch(search()))
+  }
+}
+
+// handleMarkAsPending(todo) {
+//   axios.put(`${URL}/${todo._id}`, {...todo, done: false})
+//     .then(() => this.refresh(this.state.description))
+// }
+
+export const markAsPending = (todo) => {
+  return dispatch => {
+    axios.put(`${URL}/${todo._id}`, {...todo, done: false})
+    .then(() => dispatch(search()))
+  }
+}
