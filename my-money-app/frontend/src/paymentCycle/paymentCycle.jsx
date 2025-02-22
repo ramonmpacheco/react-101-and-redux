@@ -6,8 +6,18 @@ import TabsHeader from "../common/tab/tabsHeader";
 import TabsContent from "../common/tab/tabsContent";
 import TabHeader from "../common/tab/tabHeader";
 import TabContent from "../common/tab/tabContent";
+import {bindActionCreators} from "redux";
+import {selectTab, showTabs} from "../common/tab/tabActions";
+import {connect} from "react-redux";
+import PaymentCycleList from "./paymentCycleList";
+import PaymentCycleForm from "./paymentCycleForm";
 
 class PaymentCycle extends React.Component {
+  componentDidMount() {
+    this.props.selectTab('tabList')
+    this.props.showTabs('tabList', 'tabCreate');
+  }
+
   render() {
     return (
       <div>
@@ -21,8 +31,12 @@ class PaymentCycle extends React.Component {
               <TabHeader label='Excluir' icon='trash-o' target='tabDelete'/>
             </TabsHeader>
             <TabsContent>
-              <TabContent id='tabList'><h1>Lista</h1></TabContent>
-              <TabContent id='tabCreate'><h1>Create</h1></TabContent>
+              <TabContent id='tabList'>
+                <PaymentCycleList/>
+              </TabContent>
+              <TabContent id='tabCreate'>
+                <PaymentCycleForm/>
+              </TabContent>
               <TabContent id='tabUpdate'><h1>Update</h1></TabContent>
               <TabContent id='tabDelete'><h1>Delete</h1></TabContent>
             </TabsContent>
@@ -33,4 +47,5 @@ class PaymentCycle extends React.Component {
   }
 }
 
-export default PaymentCycle
+const mapDispatchToProps = dispatch => bindActionCreators({selectTab, showTabs}, dispatch);
+export default connect(null, mapDispatchToProps)(PaymentCycle);
