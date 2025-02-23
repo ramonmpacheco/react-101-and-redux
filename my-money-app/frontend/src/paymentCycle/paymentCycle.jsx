@@ -11,6 +11,7 @@ import {selectTab, showTabs} from "../common/tab/tabActions";
 import {connect} from "react-redux";
 import PaymentCycleList from "./paymentCycleList";
 import PaymentCycleForm from "./paymentCycleForm";
+import {create} from "./paymentCycleActions";
 
 class PaymentCycle extends React.Component {
   componentDidMount() {
@@ -35,7 +36,7 @@ class PaymentCycle extends React.Component {
                 <PaymentCycleList/>
               </TabContent>
               <TabContent id='tabCreate'>
-                <PaymentCycleForm/>
+                <PaymentCycleForm onSubmit={this.props.create}/>
               </TabContent>
               <TabContent id='tabUpdate'><h1>Update</h1></TabContent>
               <TabContent id='tabDelete'><h1>Delete</h1></TabContent>
@@ -47,5 +48,5 @@ class PaymentCycle extends React.Component {
   }
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({selectTab, showTabs}, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({selectTab, showTabs, create}, dispatch);
 export default connect(null, mapDispatchToProps)(PaymentCycle);
