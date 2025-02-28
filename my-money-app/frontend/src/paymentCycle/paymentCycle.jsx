@@ -7,16 +7,14 @@ import TabsContent from "../common/tab/tabsContent";
 import TabHeader from "../common/tab/tabHeader";
 import TabContent from "../common/tab/tabContent";
 import {bindActionCreators} from "redux";
-import {selectTab, showTabs} from "../common/tab/tabActions";
 import {connect} from "react-redux";
 import PaymentCycleList from "./paymentCycleList";
 import PaymentCycleForm from "./paymentCycleForm";
-import {create, remove, update} from "./paymentCycleActions";
+import {create, init, remove, update} from "./paymentCycleActions";
 
 class PaymentCycle extends React.Component {
   componentDidMount() {
-    this.props.selectTab('tabList')
-    this.props.showTabs('tabList', 'tabCreate');
+    this.props.init()
   }
 
   render() {
@@ -53,5 +51,5 @@ class PaymentCycle extends React.Component {
   }
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({selectTab, showTabs, create, update, remove}, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({init, create, update, remove}, dispatch);
 export default connect(null, mapDispatchToProps)(PaymentCycle);

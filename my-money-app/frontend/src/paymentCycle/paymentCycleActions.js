@@ -1,11 +1,10 @@
 import axios from 'axios'
 import {toastr} from "react-redux-toastr";
-import {reset as resetForm, initialize} from 'redux-form'
+import {initialize} from 'redux-form'
 import {selectTab, showTabs} from "../common/tab/tabActions";
-import paymentCycle from "./paymentCycle";
 
 const BASE_URL = 'http://localhost:3003/api/paymentCycle';
-const INITIAL_VALUES = {}
+const INITIAL_VALUES = {credits: [{}]}
 
 export function getList() {
   const request = axios.get(BASE_URL);
