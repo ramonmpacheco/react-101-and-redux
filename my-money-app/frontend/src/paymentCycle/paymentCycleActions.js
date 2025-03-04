@@ -4,7 +4,7 @@ import {initialize} from 'redux-form'
 import {selectTab, showTabs} from "../common/tab/tabActions";
 
 const BASE_URL = 'http://localhost:3003/api/paymentCycle';
-const INITIAL_VALUES = {credits: [{}]}
+const INITIAL_VALUES = {credits: [{}], debits: [{}]}
 
 export function getList() {
   const request = axios.get(BASE_URL);
@@ -30,7 +30,7 @@ function submit(values, method) {
   return dispatch => {
     const id = values._id ? values._id : '';
     axios[method](`${BASE_URL}/${id}`, values)
-      .then(resp => {
+      .then(() => {
         toastr.success('Sucesso', 'Operação realizado com sucesso.');
         dispatch(init())
       })
@@ -41,6 +41,8 @@ function submit(values, method) {
 }
 
 export function showUpdate(paymentCycle) {
+  paymentCycle.credits = paymentCycle.credits.length > 0 ? paymentCycle.credits : INITIAL_VALUES.credits;
+  paymentCycle.debits = paymentCycle.debits.length > 0 ? paymentCycle.debits : INITIAL_VALUES.debits;
   return [
     showTabs('tabUpdate'),
     selectTab('tabUpdate'),
